@@ -40,7 +40,7 @@ changelog:
       - "^test:"
       - "^ci:"
 
-brews:
+homebrew_casks:
   - name: wakafetch
     repository:
       owner: b00y0h
@@ -50,7 +50,13 @@ brews:
     homepage: https://github.com/b00y0h/wakafetch
     description: "WakaTime activity fetcher CLI"
     license: MIT
-    test: |
-      system "#{bin}/wakafetch --version"
-    install: |
-      bin.install "wakafetch"
+    commit_author:
+      name: goreleaserbot
+      email: bot@goreleaser.com
+    commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/wakafetch"]
+          end
