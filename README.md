@@ -28,6 +28,13 @@ A command-line tool to fetch and display your coding stats from WakaTime or Waka
 
 ## 🚀 Installation
 
+### With Homebrew (macOS/Linux)
+
+```bash
+brew tap sahaj-b/wakafetch
+brew install wakafetch
+```
+
 ### With Nix Flake
 
 <details>
